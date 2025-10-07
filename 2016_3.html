@@ -1,265 +1,372 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="ko">
   <head>
-    <meta charset="utf-8" />
-    <meta name="generator" content="pandoc" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>2016_3</title>
+    <meta charset="UTF-8" />
+    <title>00 내열 내화 일반 배선</title>
     <style>
-      html {
-        color: #1a1a1a;
-        background-color: #fdfdfd;
+      /* 테이블 스타일 */
+      table {
+        width: 100%;
+        border-collapse: collapse;
       }
-      body {
-        margin: 0 auto;
-        max-width: 36em;
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        hyphens: auto;
-        overflow-wrap: break-word;
-        text-rendering: optimizeLegibility;
-        font-kerning: normal;
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        vertical-align: top; /* 셀 내용이 상단에 정렬되도록 함 */
       }
-      @media (max-width: 600px) {
-        body {
-          font-size: 0.9em;
-          padding: 12px;
-        }
-        h1 {
-          font-size: 1.8em;
-        }
-      }
-      @media print {
-        html {
-          background-color: white;
-        }
-        body {
-          background-color: transparent;
-          color: black;
-          font-size: 12pt;
-        }
-        p,
-        h2,
-        h3 {
-          orphans: 3;
-          widows: 3;
-        }
-        h2,
-        h3,
-        h4 {
-          page-break-after: avoid;
-        }
-      }
-      p {
-        margin: 1em 0;
-      }
-      a {
-        color: #1a1a1a;
-      }
-      a:visited {
-        color: #1a1a1a;
+      td:first-child {
+        width: 80%;
       }
       img {
-        max-width: 100%;
-      }
-      svg {
+        max-width: 100%; /* 이미지가 셀 너비를 넘지 않도록 조정 */
         height: auto;
-        max-width: 100%;
       }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-top: 1.4em;
-      }
-      h5,
-      h6 {
-        font-size: 1em;
-        font-style: italic;
-      }
-      h6 {
-        font-weight: normal;
-      }
-      ol,
-      ul {
-        padding-left: 1.7em;
-        margin-top: 1em;
-      }
-      li > ol,
-      li > ul {
-        margin-top: 0;
-      }
-      blockquote {
-        margin: 1em 0 1em 1.7em;
-        padding-left: 1em;
-        border-left: 2px solid #e6e6e6;
-        color: #606060;
-      }
-      code {
-        font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-        font-size: 85%;
-        margin: 0;
-        hyphens: manual;
-      }
-      pre {
-        margin: 1em 0;
-        overflow: auto;
-      }
-      pre code {
-        padding: 0;
-        overflow: visible;
-        overflow-wrap: normal;
-      }
-      .sourceCode {
-        background-color: transparent;
-        overflow: visible;
-      }
-      hr {
-        border: none;
-        border-top: 1px solid #1a1a1a;
-        height: 1px;
-        margin: 1em 0;
-      }
-      table {
-        margin: 1em 0;
-        border-collapse: collapse;
+      textarea.image-content {
         width: 100%;
-        overflow-x: auto;
-        display: block;
-        font-variant-numeric: lining-nums tabular-nums;
+        height: 100px;
+        box-sizing: border-box;
+        resize: none;
       }
-      table caption {
-        margin-bottom: 0.75em;
-      }
-      tbody {
-        margin-top: 0.5em;
-        border-top: 1px solid #1a1a1a;
-        border-bottom: 1px solid #1a1a1a;
-      }
-      th {
-        border-top: 1px solid #1a1a1a;
-        padding: 0.25em 0.5em 0.25em 0.5em;
-      }
-      td {
-        padding: 0.125em 0.5em 0.25em 0.5em;
-      }
-      header {
-        margin-bottom: 4em;
-        text-align: center;
-      }
-      #TOC li {
-        list-style: none;
-      }
-      #TOC ul {
-        padding-left: 1.3em;
-      }
-      #TOC > ul {
-        padding-left: 0;
-      }
-      #TOC a:not(:hover) {
-        text-decoration: none;
-      }
-      code {
-        white-space: pre-wrap;
-      }
-      span.smallcaps {
-        font-variant: small-caps;
-      }
-      div.columns {
+      /* ... 기존 스타일 ... */
+      .container {
         display: flex;
-        gap: min(4vw, 1.5em);
+        flex-wrap: nowrap;
+        height: 100vh; /* 뷰포트 높이의 80%로 설정하여 스크롤이 생기도록 함 */
       }
-      div.column {
-        flex: auto;
-        overflow-x: auto;
+
+      .container1 {
+        width: 80%;
+        overflow: auto; /* 내용이 넘칠 때 스크롤 */
+        box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */
       }
-      div.hanging-indent {
-        margin-left: 1.5em;
-        text-indent: -1.5em;
+
+      .container2 {
+        width: 20%;
+        overflow: auto; /* 내용이 넘칠 때 스크롤 */
+        box-sizing: border-box;
       }
-      /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-      ul.task-list[class] {
-        list-style: none;
+      /* 하단 텍스트 박스 스타일 */
+      #srcList {
+        width: 100%;
+        height: 200px;
+        margin-top: 20px;
+        box-sizing: border-box;
+        resize: none;
       }
-      ul.task-list li input[type="checkbox"] {
-        font-size: inherit;
-        width: 0.8em;
-        margin: 0 0.8em 0.2em -1.6em;
-        vertical-align: middle;
+      #srcListCode {
+        width: 100%;
+        height: 200px;
+        margin-top: 20px;
+        box-sizing: border-box;
+        resize: none;
       }
-      .display.math {
-        display: block;
-        text-align: center;
-        margin: 0.5rem auto;
+      .button-container {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .button-container button {
+        padding: 8px 16px;
+        cursor: pointer;
       }
     </style>
   </head>
   <body>
-    <table border="1" bordercolor="black">
-      <tbody>
-        <tr>
-          <td><img src="./2016_3/01.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/02.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/03.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/04.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/05.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/06.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/07.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/08.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/09.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/10.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/11.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/12.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/13.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/14.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/15.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/16.png" /></td>
-        </tr>
-        <tr>
-          <td><img src="./2016_3/17.png" /></td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="container">
+      <div class="container1">
+        <table border="1">
+          <tbody>
+            <tr>
+              <td><img src="./2016_3/01.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/02.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/03.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/04.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/05.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/06.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/07.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/08.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/09.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/10.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/11.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/12.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/13.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/14.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/15.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/16.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="./2016_3/17.png" alt="" /></td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="container2">
+        <textarea id="srcList" readonly></textarea>
+        <textarea id="srcListCode" readonly></textarea>
+        <div class="button-container">
+          <button onclick="copyToClipboard()">복사</button>
+          <button onclick="clearAll()">삭제</button>
+          <button onclick="inputNumbers()">숫자기입</button>
+          <button onclick="deleteInputNumbers()">기입숫자제거</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updateSrcList() {
+        const allRows = document.querySelectorAll("tbody tr");
+        let combinedContent = "";
+        let combinedContent1 = "";
+
+        allRows.forEach((row) => {
+          const image = row.querySelector("img");
+          const contentTextarea = row.querySelector(".image-content");
+
+          if (image && contentTextarea) {
+            const src = image.getAttribute("src");
+            const text = contentTextarea.value.trim();
+
+            if (text !== "") {
+              combinedContent += `주소: ${src}\n내용: ${text}\n\n`;
+              combinedContent1 += `
+            <tr>
+              <td>
+                <img
+                  src="${src}"
+                  alt="${text}"
+                />
+              </td>
+              <td>
+                <textarea
+                  class="image-content"
+                  oninput="updateSrcList()"
+                ></textarea>
+                <label for="label">label</label>
+              </td>
+            </tr>\n`;
+            }
+          }
+        });
+
+        document.getElementById("srcList").value = combinedContent;
+        document.getElementById("srcListCode").value = combinedContent1;
+      }
+      function copyToClipboard() {
+        const textarea = document.getElementById("srcList");
+        textarea.select();
+        document.execCommand("copy");
+        alert("주소와 내용이 클립보드에 복사되었습니다.");
+      }
+
+      function clearAll() {
+        const allTextareas = document.querySelectorAll(".image-content");
+        allTextareas.forEach((textarea) => {
+          textarea.value = "";
+        });
+        document.getElementById("srcList").value = "";
+        alert("모든 내용이 초기화되었습니다.");
+      }
+
+      function inputNumbers() {
+        const allRows = document.querySelectorAll("tbody tr");
+        allRows.forEach((row, index) => {
+          const indexNumber = index + 1;
+          const textarea = row.querySelector("textarea.image-content");
+          if (textarea) {
+            textarea.value = indexNumber.toString();
+          }
+        });
+      }
+
+      // 이 함수는 텍스트 영역에 순서대로 기입된 숫자만 지우고, 다른 내용이 있으면 그대로 남깁니다.
+      // 그리고 그 결과에 맞춰 srcListCode를 업데이트합니다.
+      function deleteInputNumbers() {
+        const allRows = document.querySelectorAll("tbody tr");
+
+        allRows.forEach((row, index) => {
+          const textarea = row.querySelector("textarea.image-content");
+
+          if (textarea) {
+            const expectedNumber = (index + 1).toString();
+            const currentValue = textarea.value.trim();
+
+            if (currentValue === expectedNumber) {
+              textarea.value = "";
+            }
+          }
+        });
+
+        // 텍스트 영역 내용 변경 후 srcListCode를 다시 생성합니다.
+        updateSrcList();
+      }
+
+      // 페이지 로드 시 모든 textarea의 placeholder를 설정하는 함수
+      window.onload = function () {
+        const allRows = document.querySelectorAll("tbody tr");
+        allRows.forEach((row) => {
+          const image = row.querySelector("img");
+          const contentTextarea = row.querySelector(".image-content");
+          const label = row.querySelector("label"); // Select the <label> element
+
+          if (image && contentTextarea && label) {
+            const altText = image.getAttribute("alt");
+            contentTextarea.setAttribute("placeholder", altText); // Set the placeholder
+            label.textContent = altText; // Set the label's text content
+          }
+        });
+      };
+    </script>
   </body>
 </html>
